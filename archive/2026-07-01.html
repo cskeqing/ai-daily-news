@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 - 2026年7月1日</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2333;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-purple: #bc8cff;
+    --accent-red: #f85149;
+    --accent-cyan: #39d2c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header .date-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  /* News Card */
+  .news-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .news-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+  }
+
+  .news-card .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .news-card .tag {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .tag-model { background: rgba(88,166,255,0.15); color: var(--accent-blue); }
+  .tag-policy { background: rgba(220,179,34,0.15); color: var(--accent-orange); }
+  .tag-funding { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+  .tag-industry { background: rgba(188,140,255,0.15); color: var(--accent-purple); }
+  .tag-research { background: rgba(57,210,192,0.15); color: var(--accent-cyan); }
+  .tag-regulation { background: rgba(248,81,73,0.15); color: var(--accent-red); }
+
+  .news-card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .news-card h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .news-card h2 a:hover {
+    color: var(--accent-blue);
+  }
+
+  .news-card .summary {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .news-card .source-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(48,54,61,0.6);
+  }
+
+  .news-card .source {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .news-card .read-more {
+    font-size: 12px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+  }
+
+  .news-card .read-more:hover {
+    color: var(--accent-cyan);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .footer .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .footer .back-home:hover {
+    background: rgba(88,166,255,0.1);
+    border-color: var(--accent-blue);
+  }
+
+  .footer .copyright {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-top: 16px;
+  }
+
+  /* Section divider */
+  .section-divider {
+    text-align: center;
+    margin: 36px 0 24px;
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-divider span {
+    background: var(--bg-primary);
+    padding: 0 16px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 40px; }
+    .header h1 { font-size: 24px; }
+    .news-card { padding: 18px 20px; }
+    .news-card h2 { font-size: 16px; }
+    .news-card .card-header { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date-badge">2026年7月1日 · 星期三</div>
+    <h1>AI 日报</h1>
+    <p class="subtitle">每日精选全球 AI 领域重要资讯 · 第 1 期</p>
+  </div>
+
+  <!-- Section: 重磅事件 -->
+  <div class="section-divider"><span>重磅事件</span></div>
+
+  <!-- News 1 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-policy">政策</span>
+      <h2><a href="https://www.gov.cn" target="_blank">国常会专题部署人工智能高质量发展，顶层政策重磅落地</a></h2>
+    </div>
+    <p class="summary">6月29日国务院常务会议研究AI产业发展，提出加快超大规模智算集群建设、实施"人工智能+"全产业行动、完善AI分级安全监管体系，加大国产大模型与算力芯片科研资金扶持。AI被定性为"新一轮科技革命和产业变革的重要驱动力量"，2026年AI产业化全面加速。</p>
+    <div class="source-row">
+      <span class="source">来源：新华社 / 国务院</span>
+      <a class="read-more" href="https://www.gov.cn" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 2 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="https://openai.com" target="_blank">OpenAI 发布 GPT-5.6 三型号矩阵：Sol/Terra/Luna 覆盖全场景</a></h2>
+    </div>
+    <p class="summary">OpenAI 于6月27日推出GPT-5.6有限预览版，包含旗舰Sol（性能碾压GPT-5.5，价格不变）、均衡Terra（性能持平GPT-5.5，价格砍半）和轻量Luna（高频轻量场景），在编码、科学推理和网络安全领域实现显著提升。目前因美国政府审查仅向部分企业开放。</p>
+    <div class="source-row">
+      <span class="source">来源：OpenAI 官方</span>
+      <a class="read-more" href="https://openai.com" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 3 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-regulation">监管</span>
+      <h2><a href="https://artificialintelligenceact.eu" target="_blank">欧盟 AI 法案高风险条款今日正式生效，全球首部全面 AI 监管框架落地</a></h2>
+    </div>
+    <p class="summary">EU AI Act 高风险AI系统义务于2026年7月1日全面生效，禁止社会评分、实时远程生物识别等8类"不可接受风险"AI系统，高风险系统须完成conformity评估和人工监督，违规罚款最高可达全球年营收7%。GPAI模型透明度要求将于8月2日生效。</p>
+    <div class="source-row">
+      <span class="source">来源：欧盟委员会</span>
+      <a class="read-more" href="https://artificialintelligenceact.eu" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Section: 融资与市场 -->
+  <div class="section-divider"><span>融资与市场</span></div>
+
+  <!-- News 4 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-funding">融资</span>
+      <h2><a href="https://www.reuters.com/technology/artificial-intelligence/" target="_blank">AI 融资军备赛白热化：OpenAI/Anthropic 争相 IPO，英伟达 250 亿美元发债遭疯抢</a></h2>
+    </div>
+    <p class="summary">OpenAI 秘密递交 S-1 招股书，最新融资1220亿美元，估值8520亿；Anthropic 抢先递表，H轮融资650亿美元后估值飙升至9650亿美元。英伟达时隔五年重返债市发行250亿美元债券，认购需求高达850亿美元，超发行额三倍。AI资本争夺战推向新高潮。</p>
+    <div class="source-row">
+      <span class="source">来源：Reuters / SEC</span>
+      <a class="read-more" href="https://www.reuters.com/technology/artificial-intelligence/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 5 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">产业</span>
+      <h2><a href="https://apnews.com" target="_blank">韩国官宣 14 万亿人民币 AI 产业十年投资计划，全球算力竞赛升级</a></h2>
+    </div>
+    <p class="summary">6月30日韩国曝光2600万亿韩元（约14万亿人民币）AI投资规划，覆盖AI芯片、数据中心、人形机器人、储能全产业链。Samsung与SK Hynix加速超大规模芯片集群建设，总投资口径约5180亿美元，全球半导体与AI硬件板块应声走强。</p>
+    <div class="source-row">
+      <span class="source">来源：AP / 韩国产业部</span>
+      <a class="read-more" href="https://apnews.com" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Section: 技术与产品 -->
+  <div class="section-divider"><span>技术与产品</span></div>
+
+  <!-- News 6 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">企业</span>
+      <h2><a href="https://www.microsoft.com" target="_blank">微软今日起取消内部 Claude Code 许可，全面转向自研 MAI 模型阵营</a></h2>
+    </div>
+    <p class="summary">微软宣布6月30日起取消大部分内部Claude Code许可证，将数千名工程师迁移至GitHub Copilot CLI。此前微软在Build 2026发布7款自研MAI模型（含MAI Thinking 1），AI CEO Mustafa Suleyman表示Anthropic模型在企业规模下成本过高，反映大厂AI编码工具阵营分化趋势。</p>
+    <div class="source-row">
+      <span class="source">来源：Microsoft / Studio Global</span>
+      <a class="read-more" href="https://www.microsoft.com" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 7 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="https://x.ai" target="_blank">xAI Grok 4.5 内部 Beta 测试启动，马斯克官宣每月推全新大模型</a></h2>
+    </div>
+    <p class="summary">马斯克于6月29日宣布Grok 4.5已在特斯拉、SpaceX内部测试，基于1.5万亿参数V9底座，代码能力对标Claude Opus。xAI计划今年剩余每月推出一款全新自研大模型，刷新行业迭代节奏。SpaceX工程师团队正全面参与Grok模型改进。</p>
+    <div class="source-row">
+      <span class="source">来源：xAI / Elon Musk (X)</span>
+      <a class="read-more" href="https://x.ai" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 8 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="https://www.volcengine.com" target="_blank">字节跳动发布豆包大模型 2.1，Agent 与编码能力对标 GPT-5.5</a></h2>
+    </div>
+    <p class="summary">字节跳动在火山引擎Force大会上发布豆包大模型2.1（Pro/Turbo），重点强化Agent、Coding与VLM能力，多项权威基准接近或超越GPT-5.5和Claude Opus 4.7。同期升级Seedance 2.5视频生成模型，正式开启豆包专业版付费订阅（68-500元/月），国产大模型全面商业化。</p>
+    <div class="source-row">
+      <span class="source">来源：InfoQ / 电子工程专辑</span>
+      <a class="read-more" href="https://www.volcengine.com" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 9 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">并购</span>
+      <h2><a href="https://techcrunch.com" target="_blank">Windsurf 并购案震动 AI 编码赛道：Google 24 亿美元签核心团队</a></h2>
+    </div>
+    <p class="summary">AI编码公司Windsurf在72小时内完成行业史上最混乱的并购拆分：Google以24亿美元签下人才许可协议，将CEO Varun Mohan等核心团队纳入DeepMind；Cognition（Devin开发商）收购剩余业务（IP、产品、品牌及8200万美元ARR）。AI人才争夺白热化。</p>
+    <div class="source-row">
+      <span class="source">来源：TechCrunch / MefAI</span>
+      <a class="read-more" href="https://techcrunch.com" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 10 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-research">研究</span>
+      <h2><a href="https://deepmind.google" target="_blank">Google DeepMind Co-Scientist 登上 Nature：多 Agent AI 科学家从 Demo 走向实验验证</a></h2>
+    </div>
+    <p class="summary">DeepMind的Co-Scientist在Nature发表论文，展示了从假设生成到实验验证的完整闭环。三阶段多Agent系统（生成→辩论排序→进化优化）已在Stanford、MIT、Cambridge等顶尖实验室获得湿实验验证，AI从"辅助工具"升级为"科研合作伙伴"的标志性里程碑。</p>
+    <div class="source-row">
+      <span class="source">来源：Nature / Google DeepMind</span>
+      <a class="read-more" href="https://deepmind.google" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 11 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">产业</span>
+      <h2><a href="https://www.caixin.com" target="_blank">英伟达在华 AI 芯片份额显著下滑，华为加速国产替代</a></h2>
+    </div>
+    <p class="summary">受美国出口限制影响，Nvidia在中国AI芯片市场份额持续被华为蚕食。出口限制正在把中国AI算力生态更快推向国产替代，重塑全球AI芯片收入地理结构与软件生态兼容路线。同期NVIDIA发布RTX Spark超级芯片（1 Petaflop本地算力），面向个人AI Agent重塑Windows PC。</p>
+    <div class="source-row">
+      <span class="source">来源：AP / NVIDIA</span>
+      <a class="read-more" href="https://www.caixin.com" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a class="back-home" href="../index.html">&#8592; 返回首页</a>
+    <p class="copyright">AI 日报 &copy; 2026 · 每日精选全球 AI 领域重要资讯</p>
+  </div>
+
+</div>
+</body>
+</html>

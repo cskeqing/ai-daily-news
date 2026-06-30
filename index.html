@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 - 每日精选全球 AI 领域重要资讯</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2333;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-purple: #bc8cff;
+    --accent-cyan: #39d2c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* Header */
+  .site-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .site-header h1 {
+    font-size: 40px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .site-header .tagline {
+    color: var(--text-secondary);
+    font-size: 16px;
+  }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-card .number {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-card .label {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* Latest Report */
+  .latest-report {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .latest-report::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+  }
+
+  .latest-report .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .latest-report h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .latest-report h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .latest-report h2 a:hover {
+    color: var(--accent-blue);
+  }
+
+  .latest-report .preview {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .latest-report .read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .latest-report .read-btn:hover {
+    opacity: 0.85;
+  }
+
+  /* Archive */
+  .archive-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  .archive-list {
+    list-style: none;
+  }
+
+  .archive-list li {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+  }
+
+  .archive-list li:hover {
+    border-color: var(--accent-blue);
+  }
+
+  .archive-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .archive-list a:hover {
+    color: var(--accent-blue);
+  }
+
+  .archive-list .date-text {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  .archive-list .count-badge {
+    background: rgba(88,166,255,0.1);
+    color: var(--accent-blue);
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .footer .copyright {
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 40px; }
+    .site-header h1 { font-size: 28px; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-card { padding: 14px; }
+    .stat-card .number { font-size: 24px; }
+    .latest-report { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="site-header">
+    <h1>AI 日报</h1>
+    <p class="tagline">每日精选全球 AI 领域重要资讯</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="number">1</div>
+      <div class="label">累计发布期数</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">11</div>
+      <div class="label">累计资讯条数</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">8+</div>
+      <div class="label">资讯来源渠道</div>
+    </div>
+  </div>
+
+  <!-- Latest Report -->
+  <div class="latest-report">
+    <div class="badge">最新报告</div>
+    <h2><a href="archive/2026-07-01.html">2026年7月1日 AI 日报</a></h2>
+    <p class="preview">国常会专题部署AI高质量发展；OpenAI发布GPT-5.6三型号矩阵；欧盟AI法案高风险条款今日正式生效；AI融资军备赛白热化，OpenAI/Anthropic争相IPO；韩国官宣14万亿人民币AI产业十年投资计划；微软取消内部Claude Code许可转自研MAI；xAI Grok 4.5内部测试；字节豆包大模型2.1对标GPT-5.5；Windsurf并购案震动AI编码赛道；DeepMind Co-Scientist登上Nature；英伟达在华份额下滑华为加速替代...</p>
+    <a class="read-btn" href="archive/2026-07-01.html">阅读完整日报 &#8594;</a>
+  </div>
+
+  <!-- Archive -->
+  <div class="archive-section">
+    <h3>历史归档</h3>
+    <ul class="archive-list">
+      <li>
+        <a href="archive/2026-07-01.html">
+          <span class="date-text">2026年7月1日 · 星期三</span>
+          <span class="count-badge">11 条资讯</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p class="copyright">AI 日报 &copy; 2026 · 每日精选全球 AI 领域重要资讯</p>
+  </div>
+
+</div>
+</body>
+</html>
