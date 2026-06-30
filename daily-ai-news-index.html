@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 日报 - 每日人工智能资讯速递</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 50%, #24243e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 50px 0 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 40px;
+        }
+
+        .header .logo { font-size: 48px; margin-bottom: 10px; }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+        }
+
+        .header .tagline {
+            color: #777;
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Latest Report */
+        .latest-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        .section-title .icon { font-size: 24px; }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(102,126,234,0.4), transparent);
+        }
+
+        .latest-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(102,126,234,0.2);
+            border-radius: 18px;
+            padding: 28px 28px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .latest-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .latest-card .card-date {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .latest-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .latest-highlights {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        .highlight-item .dot {
+            flex-shrink: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #667eea;
+            margin-top: 8px;
+        }
+
+        .read-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .read-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(102,126,234,0.4);
+        }
+
+        .read-btn .arrow { font-size: 16px; }
+
+        /* Archive */
+        .archive-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .archive-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .archive-item:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(102,126,234,0.2);
+            transform: translateX(4px);
+        }
+
+        .archive-item .date {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .archive-item .weekday {
+            font-size: 12px;
+            color: #667eea;
+            margin-left: 10px;
+            font-weight: 400;
+        }
+
+        .archive-item .hint {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .archive-item .go {
+            font-size: 18px;
+            color: #667eea;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .archive-item:hover .go { opacity: 1; }
+
+        .empty-archive {
+            text-align: center;
+            padding: 40px 20px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card .stat-num {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 50px;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container { padding: 12px 12px 40px; }
+            .header h1 { font-size: 24px; }
+            .latest-card { padding: 20px 18px; }
+            .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .stat-card { padding: 14px 8px; }
+            .stat-card .stat-num { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🤖</div>
+            <h1>AI 日报</h1>
+            <div class="tagline">每日人工智能资讯速递 · 5分钟掌握行业动态</div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-num" id="total-days">1</div>
+                <div class="stat-label">已发布天数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" id="total-news">11</div>
+                <div class="stat-label">累计资讯</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">8+</div>
+                <div class="stat-label">信息源覆盖</div>
+            </div>
+        </div>
+
+        <!-- Latest Report -->
+        <div class="latest-section">
+            <div class="section-title">
+                <span class="icon">📰</span> 最新一期
+            </div>
+            <div class="latest-card">
+                <div class="card-date">2026年7月1日 · 星期二</div>
+                <h2>模型获取门槛提高，人才争夺白热化</h2>
+                <div class="latest-highlights">
+                    <div class="highlight-item">
+                        <div class="dot"></div>
+                        <span>OpenAI限制先进模型仅向"受信任合作方"开放，美国政府前沿模型预部署审查走向实际执行</span>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="dot"></div>
+                        <span>谷歌Gemini核心研究员拟跳槽Anthropic，AI人才争夺进入深水区</span>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="dot"></div>
+                        <span>OpenAI/Anthropic/Amazon/Microsoft联合5亿美元应对AI就业冲击</span>
+                    </div>
+                </div>
+                <a href="archive/2026-07-01.html" class="read-btn">
+                    阅读完整日报 <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Archive -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📚</span> 历史归档
+            </div>
+            <div class="archive-grid">
+                <a href="archive/2026-07-01.html" class="archive-item">
+                    <div>
+                        <span class="date">2026年7月1日</span>
+                        <span class="weekday">星期二</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span class="hint">模型限制 · 人才争夺 · 就业转型</span>
+                        <span class="go">→</span>
+                    </div>
+                </a>
+                <!-- 新的归档条目会在每日生成时自动追加到这个列表中 -->
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>由 TRAE AI 自动生成 · 每日更新</p>
+            <p>信息源：机器之心 · 量子位 · 36氪 · Hacker News · Axios · TechCrunch · Business Insider · arXiv</p>
+        </div>
+    </div>
+</body>
+</html>
