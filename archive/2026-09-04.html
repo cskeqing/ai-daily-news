@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 - 2026年9月4日</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2333;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-purple: #bc8cff;
+    --accent-red: #f85149;
+    --accent-cyan: #39d2c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header .date-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  /* News Card */
+  .news-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .news-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+  }
+
+  .news-card .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .news-card .tag {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .tag-model { background: rgba(88,166,255,0.15); color: var(--accent-blue); }
+  .tag-policy { background: rgba(220,179,34,0.15); color: var(--accent-orange); }
+  .tag-funding { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+  .tag-industry { background: rgba(188,140,255,0.15); color: var(--accent-purple); }
+  .tag-research { background: rgba(57,210,192,0.15); color: var(--accent-cyan); }
+  .tag-regulation { background: rgba(248,81,73,0.15); color: var(--accent-red); }
+  .tag-security { background: rgba(248,81,73,0.15); color: var(--accent-red); }
+  .tag-open-source { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+
+  .news-card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .news-card h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .news-card h2 a:hover {
+    color: var(--accent-blue);
+  }
+
+  .news-card .summary {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .news-card .source-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(48,54,61,0.6);
+  }
+
+  .news-card .source {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .news-card .read-more {
+    font-size: 12px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+  }
+
+  .news-card .read-more:hover {
+    color: var(--accent-cyan);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .footer .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .footer .back-home:hover {
+    background: rgba(88,166,255,0.1);
+    border-color: var(--accent-blue);
+  }
+
+  .footer .copyright {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-top: 16px;
+  }
+
+  /* Section divider */
+  .section-divider {
+    text-align: center;
+    margin: 36px 0 24px;
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-divider span {
+    background: var(--bg-primary);
+    padding: 0 16px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 40px; }
+    .header h1 { font-size: 24px; }
+    .news-card { padding: 18px 20px; }
+    .news-card h2 { font-size: 16px; }
+    .news-card .card-header { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date-badge">2026年9月4日 · 星期五</div>
+    <h1>AI 日报</h1>
+    <p class="subtitle">每日精选全球 AI 领域重要资讯 · 第 4 期</p>
+  </div>
+
+  <!-- Section: 重磅事件 -->
+  <div class="section-divider"><span>重磅事件</span></div>
+
+  <!-- News 1 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="https://36kr.com/p/3968331509782406" target="_blank">OpenAI正式发布GPT-6 Astra，宣告"欢迎来到AGI时代"</a></h2>
+    </div>
+    <p class="summary">北京时间9月4日凌晨，OpenAI正式发布GPT-6 Astra，被定位为"全球最智能、最对齐的模型"，在计算机操作、网页浏览、软件工程、网络安全、科学研究及专业工作方面均达到当前最高水平。GPT-6 Astra是OpenAI首个跨过Preparedness Framework "Critical"网络安全能力阈值的模型。目前率先向Trusted Access Program企业开放，API及Plus/Pro/Business/Enterprise将在未来几天陆续上线。GPT-6 Astra Pro同步发布，输出价格每百万词元50美元。</p>
+    <div class="source-row">
+      <span class="source">来源：36氪 / 腾讯新闻 / 凤凰网</span>
+      <a class="read-more" href="https://36kr.com/p/3968331509782406" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 2 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-security">安全</span>
+      <h2><a href="http://m.toutiao.com/group/7681458149106188843/" target="_blank">历史级集体宕机：ChatGPT、Claude、Grok、Gemini同日大规模中断</a></h2>
+    </div>
+    <p class="summary">9月3日，OpenAI（ChatGPT/Codex）、Anthropic（Claude）、xAI（Grok）三大头部AI服务先后出现大规模宕机，谷歌Gemini和微软Copilot也出现访问异常，事件持续约3小时40分钟。这是有记录以来最大规模的AI服务集体中断事件，Anthropic状态页显示Claude Mythos 5等多个模型受影响。AI本地化概念股Palantir美股暴涨7.81%，凸显市场对AI服务集中化风险的担忧。</p>
+    <div class="source-row">
+      <span class="source">来源：21世纪经济报道 / 科创板日报</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7681458149106188843/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 3 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">产业</span>
+      <h2><a href="https://www.unite.ai/nvidia-signs-definitive-agreement-to-acquire-hugging-face-for-12-9b/" target="_blank">英伟达129.3亿美元收购Hugging Face，锁定全球最大AI开源社区</a></h2>
+    </div>
+    <p class="summary">英伟达宣布以129.3亿美元收购全球最大AI开源社区Hugging Face，已通过SEC 8-K文件确认，估值达年化收入的86倍，覆盖1300万开发者。黄仁勋表示双方将共同扩展平台规模、强化基础设施。Hugging Face将继续作为面向整个AI生态系统的开放平台，开发者可自由选择模型、框架、云服务及计算平台。这是英伟达从芯片巨头向AI生态平台扩张的关键一步。</p>
+    <div class="source-row">
+      <span class="source">来源：Unite.ai / 证券时报 / NVIDIA</span>
+      <a class="read-more" href="https://www.unite.ai/nvidia-signs-definitive-agreement-to-acquire-hugging-face-for-12-9b/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Section: 融资与市场 -->
+  <div class="section-divider"><span>融资与市场</span></div>
+
+  <!-- News 4 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-funding">融资</span>
+      <h2><a href="https://coindesk.cc/anthropic-nears-15b-pre-ipo-credit-facility-109851.html" target="_blank">Anthropic接近敲定150亿美元IPO前信贷融资，四大投行联手</a></h2>
+    </div>
+    <p class="summary">Anthropic即将完成150亿美元循环信贷额度，远超去年的25亿美元规模。摩根士丹利牵头，高盛、摩根大通和花旗担任重要角色，这四家银行同时也是IPO主要承销商。此举为Anthropic公开提交IPO文件扫清关键障碍，是AI公司最大规模的上市前融资安排之一，标志着AI独角兽进入资本收割期。</p>
+    <div class="source-row">
+      <span class="source">来源：CoinDesk / Bloomberg / 新浪财经</span>
+      <a class="read-more" href="https://coindesk.cc/anthropic-nears-15b-pre-ipo-credit-facility-109851.html" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 5 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-funding">融资</span>
+      <h2><a href="http://m.toutiao.com/group/7680353048186765859/" target="_blank">Anthropic与Lambda签署350亿美元算力大单，英伟达下场转租</a></h2>
+    </div>
+    <p class="summary">Anthropic与英伟达支持的云服务商Lambda签署六年期350亿美元（约2358亿人民币）算力合作协议，锁定德州约350MW数据中心算力资源。英伟达持有相关数据中心租约并以转租形式参与。这是Anthropic今年第二笔百亿美元级算力协议，凸显AI算力需求的持续升温，英伟达角色已从芯片供应商延伸至算力中间商。</p>
+    <div class="source-row">
+      <span class="source">来源：IT之家 / 华尔街日报 / 新浪财经</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7680353048186765859/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 6 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-funding">融资</span>
+      <h2><a href="https://m.sfccn.com/2026/9-3/4NMDE0MDZfMjIyOTc4NA.html" target="_blank">字节跳动296亿美元银团贷款落定，AI基建资本支出或达700亿</a></h2>
+    </div>
+    <p class="summary">字节跳动296亿美元银团贷款规模落定，为2026年以来亚洲第二大美元计价贷款交易。该笔融资最初目标为200亿美元，因银行认购订单超过300亿美元，最终扩至296亿美元。市场普遍认为资金将为AI基建备弹药，字节正考虑将2026年资本支出提升至最高700亿美元，较2025年增长超一倍，主要用于数据中心及AI基础设施建设。阿里、腾讯也在同步为AI找钱。</p>
+    <div class="source-row">
+      <span class="source">来源：南方财经网 / 第一财经 / 21世纪经济报道</span>
+      <a class="read-more" href="https://m.sfccn.com/2026/9-3/4NMDE0MDZfMjIyOTc4NA.html" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 7 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">产业</span>
+      <h2><a href="https://finance.sina.com.cn/jjxw/2026-09-03/doc-iniqpqxu4266850.shtml" target="_blank">博通Q3财报：AI芯片收入167亿美元同比暴增221%，向OpenAI出货定制芯片</a></h2>
+    </div>
+    <p class="summary">博通2026财年第三财季营收295.9亿美元，半导体业务营收208.39亿美元同比增127%。AI半导体营收达167亿美元，同比增长221%，环比增长54%，占总营收56%。博通向Anthropic和Google大量出货Ironwood TPU v7，开始量产Google下一代TPU v8i，并向OpenAI出货首代定制芯片。公司预计Q4 AI芯片收入将达217亿美元，CEO Hock Tan称明年AI芯片收入有望翻倍。</p>
+    <div class="source-row">
+      <span class="source">来源：新浪财经 / Nasdaq / MarketBeat</span>
+      <a class="read-more" href="https://finance.sina.com.cn/jjxw/2026-09-03/doc-iniqpqxu4266850.shtml" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Section: 技术与产品 -->
+  <div class="section-divider"><span>技术与产品</span></div>
+
+  <!-- News 8 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="https://www.unite.ai/meta-launches-muse-spark-1-3-citing-gains-in-coding-and-agentic-tasks/" target="_blank">Meta发布Muse Spark 1.3，编程能力超越GPT-5.6 Sol且价格不变</a></h2>
+    </div>
+    <p class="summary">Meta超级智能实验室于9月2日发布Muse Spark 1.3，这是四个月内第四个版本。模型在智能体长任务和编程能力上显著提升，工具调用减少20%，token使用减少25%，编程能力超越GPT-5.6 Sol，价格保持不变。模型学会在指令模糊时反问、在不可逆操作前确认、在卡住时求助。生成速度约235 tokens/s，仅次于谷歌Gemini 3.8 Flash。已在Muse Code和Meta Model API中上线。</p>
+    <div class="source-row">
+      <span class="source">来源：Unite.ai / MarkTechPost / AIbase</span>
+      <a class="read-more" href="https://www.unite.ai/meta-launches-muse-spark-1-3-citing-gains-in-coding-and-agentic-tasks/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 9 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-open-source">开源</span>
+      <h2><a href="https://blogs.nvidia.cn/blog/local-ai-ifa-next-gen-agents-nv-pair-rtx-spark/" target="_blank">英伟达IFA 2026发布开源PAIR工具：闲置电脑串联为个人AI数据中心</a></h2>
+    </div>
+    <p class="summary">英伟达在IFA 2026上发布免费开源工具Personal AI Router（PAIR），可将局域网内闲置电脑算力组合协同，支持与Ollama、LM Studio等本地推理生态对接，简化家庭与边缘端AI部署。超过一半美国家庭拥有2台以上PC，大量算力在一天中大部分时间处于闲置状态，PAIR旨在释放这些潜在算力。智能体工作流可将复杂任务拆分并行执行到多台设备上，开发者可在GitHub上检视代码并贡献改进。</p>
+    <div class="source-row">
+      <span class="source">来源：NVIDIA博客 / SuperIntelligence News / Startup Fortune</span>
+      <a class="read-more" href="https://blogs.nvidia.cn/blog/local-ai-ifa-next-gen-agents-nv-pair-rtx-spark/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 10 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="http://m.toutiao.com/group/7680534841485443624/" target="_blank">MiniMax H3 Max：3秒出片比播放还快，AI视频开启实时商业化</a></h2>
+    </div>
+    <p class="summary">MiniMax上线H3 Max视频生成模型，实现3秒出片速度比播放还快，在Artificial Analysis和Design Arena两个主流榜单拿下图生视频第一。MiniMax在7月底开源H3模型后三周内获2400万次下载。H3 Max支撑了实时直播和AI版短视频App，标志着AI视频从"等待生成"迈入"实时生成"时代，打开了AI视频的实时商业化路径。</p>
+    <div class="source-row">
+      <span class="source">来源：量子位 / 今日头条</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7680534841485443624/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 11 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-research">研究</span>
+      <h2><a href="http://m.toutiao.com/group/7680736872233976354/" target="_blank">李飞飞World Labs发布全球首个多模态世界模型Atlas</a></h2>
+    </div>
+    <p class="summary">李飞飞创立的World Labs发布新一代世界模型Atlas，被称为"全球首个"多模态世界模型。Atlas不只是生成可互动视频，而是具备完整的多模态理解与生成能力，能够理解和模拟物理世界的空间关系与因果关系。李飞飞本人将其视为World Labs的里程碑式成果并置顶推荐，标志着世界模型从单一模态向多模态融合的关键突破。</p>
+    <div class="source-row">
+      <span class="source">来源：量子位 / 今日头条</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7680736872233976354/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a class="back-home" href="../index.html">&#8592; 返回首页</a>
+    <p class="copyright">AI 日报 &copy; 2026 · 每日精选全球 AI 领域重要资讯</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 - 2026年7月3日</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2333;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-purple: #bc8cff;
+    --accent-red: #f85149;
+    --accent-cyan: #39d2c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header .date-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  /* News Card */
+  .news-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .news-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+  }
+
+  .news-card .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .news-card .tag {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .tag-model { background: rgba(88,166,255,0.15); color: var(--accent-blue); }
+  .tag-policy { background: rgba(220,179,34,0.15); color: var(--accent-orange); }
+  .tag-funding { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+  .tag-industry { background: rgba(188,140,255,0.15); color: var(--accent-purple); }
+  .tag-research { background: rgba(57,210,192,0.15); color: var(--accent-cyan); }
+  .tag-regulation { background: rgba(248,81,73,0.15); color: var(--accent-red); }
+  .tag-security { background: rgba(248,81,73,0.15); color: var(--accent-red); }
+  .tag-open-source { background: rgba(63,185,80,0.15); color: var(--accent-green); }
+
+  .news-card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .news-card h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .news-card h2 a:hover {
+    color: var(--accent-blue);
+  }
+
+  .news-card .summary {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .news-card .source-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(48,54,61,0.6);
+  }
+
+  .news-card .source {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .news-card .read-more {
+    font-size: 12px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+  }
+
+  .news-card .read-more:hover {
+    color: var(--accent-cyan);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .footer .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .footer .back-home:hover {
+    background: rgba(88,166,255,0.1);
+    border-color: var(--accent-blue);
+  }
+
+  .footer .copyright {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-top: 16px;
+  }
+
+  /* Section divider */
+  .section-divider {
+    text-align: center;
+    margin: 36px 0 24px;
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-divider span {
+    background: var(--bg-primary);
+    padding: 0 16px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 40px; }
+    .header h1 { font-size: 24px; }
+    .news-card { padding: 18px 20px; }
+    .news-card h2 { font-size: 16px; }
+    .news-card .card-header { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date-badge">2026年7月3日 · 星期五</div>
+    <h1>AI 日报</h1>
+    <p class="subtitle">每日精选全球 AI 领域重要资讯 · 第 3 期</p>
+  </div>
+
+  <!-- Section: 重磅事件 -->
+  <div class="section-divider"><span>重磅事件</span></div>
+
+  <!-- News 1 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-funding">融资</span>
+      <h2><a href="https://www.cls.cn/detail/2415862" target="_blank">快手可灵AI完成30亿美元融资，创全球视频大模型最大单笔融资纪录</a></h2>
+    </div>
+    <p class="summary">快手在港交所公告，旗下视频生成大模型可灵AI完成近30亿美元（约203.8亿元人民币）融资，投后估值达180亿美元（约1223亿元）。此次融资由具有中东背景的基金领投，腾讯、阿里等参投，创下全球视频大模型公司最大单笔融资纪录。可灵AI将与Sora、Seedance展开白热化竞争。</p>
+    <div class="source-row">
+      <span class="source">来源：财联社 / 量子位 / 36氪</span>
+      <a class="read-more" href="https://www.cls.cn/detail/2415862" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 2 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="https://www.qbitai.com/2026/07/442048.html" target="_blank">Anthropic发布Claude Sonnet 5，中端性能逼近旗舰价格低60%</a></h2>
+    </div>
+    <p class="summary">Anthropic正式发布新一代中端模型Claude Sonnet 5，并将其设为平台默认模型向全球用户开放。该模型在多项基准测试中性能接近旗舰Opus 4.8，但价格低约60%。同时发布的还有Claude Science工具，助力科研场景。此举正值Anthropic推进IPO进程，以高性价比策略扩大市场份额。</p>
+    <div class="source-row">
+      <span class="source">来源：量子位 / TechCrunch</span>
+      <a class="read-more" href="https://www.qbitai.com/2026/07/442048.html" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 3 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-regulation">监管</span>
+      <h2><a href="http://m.toutiao.com/group/7657421316298965545/" target="_blank">美国解除Anthropic Claude Fable 5和Mythos 5出口管制，7月2日起恢复全球访问</a></h2>
+    </div>
+    <p class="summary">美国商务部正式撤销对Anthropic旗下Claude Fable 5和Mythos 5的出口管制令，7月2日起全球用户可恢复访问。这场持续19天的监管风暴表面落幕，但标志着AI前沿模型发布已深度嵌入政府安全审查流程。同期加州州政府签约全面引入Claude，AI竞争从模型参数竞赛扩展至合规能力较量。</p>
+    <div class="source-row">
+      <span class="source">来源：今日头条 / Axios</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7657421316298965545/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 4 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-open-source">开源</span>
+      <h2><a href="https://cj.sina.cn/articles/view/7879848900/1d5acf3c40680315kg" target="_blank">美团发布LongCat-2.0：1.6万亿参数大模型，纯国产算力全流程训练并完全开源</a></h2>
+    </div>
+    <p class="summary">美团发布新一代基础大模型LongCat-2.0，总参数1.6万亿、平均激活约48B，选择完全开源。最令人震惊的是该模型在五万卡国产算力集群上完成全流程训练，打破了业界对国产芯片无法支撑万亿大模型的固有认知。此前LongCat Owl Alpha已在OpenRouter Q2开发者投票中登顶「最常用国产大模型」。</p>
+    <div class="source-row">
+      <span class="source">来源：新浪财经 / 量子位</span>
+      <a class="read-more" href="https://cj.sina.cn/articles/view/7879848900/1d5acf3c40680315kg" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Section: 技术与产品 -->
+  <div class="section-divider"><span>技术与产品</span></div>
+
+  <!-- News 5 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-model">模型</span>
+      <h2><a href="http://m.toutiao.com/group/7657483185479107091/" target="_blank">OpenAI发布GPT-5.6系列：Sol旗舰、Terra经济、Luna高速三变体，但遭政府安全审查</a></h2>
+    </div>
+    <p class="summary">OpenAI正式预览发布GPT-5.6系列模型，包含旗舰版Sol、经济版Terra及高速版Luna三个变体，价格比Claude Fable 5便宜近一半。但GPT-5.6成为特朗普AI监督行政令后首个撞上枪口的模型，在网络安全和生物风险维度未通过审查，目前仅向部分可信伙伴开放limited preview。</p>
+    <div class="source-row">
+      <span class="source">来源：今日头条 / TechCrunch</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7657483185479107091/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 6 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">产业</span>
+      <h2><a href="https://c.m.163.com/news/a/KILHDSNU0519QIKK.html" target="_blank">英伟达Vera Rubin AI芯片全面投产，推理性能较Blackwell提升5倍成本降至1/10</a></h2>
+    </div>
+    <p class="summary">英伟达CEO黄仁勋宣布新一代AI芯片平台Vera Rubin全面投产，AI推理性能较Blackwell提升5倍，成本降至1/10。SemiAnalysis预测英伟达2027财年下半年数据中心收入将超预期20%，Rubin平台因HBM4瓶颈解除将大幅出货。黄仁勋表示AI进入"会思考"下半场，物理AI的ChatGPT时刻已经到来。</p>
+    <div class="source-row">
+      <span class="source">来源：网易财经 / SemiAnalysis</span>
+      <a class="read-more" href="https://c.m.163.com/news/a/KILHDSNU0519QIKK.html" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 7 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">产业</span>
+      <h2><a href="http://m.toutiao.com/group/7655693164304695842/" target="_blank">OpenAI联合博通发布首款定制AI芯片Jalapeño，计划2026年底前大规模部署</a></h2>
+    </div>
+    <p class="summary">OpenAI联合半导体巨头博通正式发布首款定制AI推理芯片Jalapeño，一个纯软件公司仅用9个月搞定了一颗专用AI芯片。此举标志着OpenAI正从纯软件向软硬一体转型，试图降低对英伟达的依赖。芯片计划2026年底前大规模部署，目前已与台积电达成合作。</p>
+    <div class="source-row">
+      <span class="source">来源：今日头条 / 36氪</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7655693164304695842/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Section: 融资与市场 -->
+  <div class="section-divider"><span>融资与市场</span></div>
+
+  <!-- News 8 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-funding">融资</span>
+      <h2><a href="http://m.toutiao.com/group/7657442179786261011/" target="_blank">自变量机器人连续完成4轮融资估值破200亿，字节红杉等巨头联合押注</a></h2>
+    </div>
+    <p class="summary">具身智能公司自变量机器人(X Square Robot)连续完成B+、B++和C轮融资，投资方包括中国移动链长基金、红杉中国、IDG资本、源码资本、达晨财智、字节跳动等，投后估值超过200亿元。6月具身智能赛道融资冠军智平方以50亿单笔融资估值也达200亿，两大独角兽并驾齐驱。</p>
+    <div class="source-row">
+      <span class="source">来源：码刻 / 21世纪经济报道</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7657442179786261011/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 9 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-industry">产业</span>
+      <h2><a href="http://m.toutiao.com/group/7657757417929556490/" target="_blank">谷歌AI人才持续流失：继Noam Shazeer、John Jumper后又两位核心科学家转投竞争对手</a></h2>
+    </div>
+    <p class="summary">继6月Gemini联合负责人Noam Shazeer转投OpenAI、AlphaFold负责人John Jumper转投Anthropic后，又有两位谷歌AI核心科学家宣布离职加入竞争对手。这场人才 Exodus 反映出谷歌在AI人才争夺战中的被动局面，也加剧了OpenAI与Anthropic对顶尖研究人员的争夺。</p>
+    <div class="source-row">
+      <span class="source">来源：今日头条 / The Information</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7657757417929556490/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Section: 政策与行业 -->
+  <div class="section-divider"><span>政策与行业</span></div>
+
+  <!-- News 10 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-policy">政策</span>
+      <h2><a href="http://m.toutiao.com/group/7657332723987595802/" target="_blank">2026世界人工智能大会(WAIC)将于7月17日-20日在上海举办，超300款AI产品全球首发</a></h2>
+    </div>
+    <p class="summary">2026世界人工智能大会(WAIC 2026)将于7月17日至20日在上海举办，主题为"智能伙伴 共创未来"。本届大会是我国AI领域最高规格国际盛会，1100多家企业参展，超300款AI产品全球首发，展览面积突破10万平方米创历届之最。ICML 2026也将于7月6日-11日在韩国首尔召开。</p>
+    <div class="source-row">
+      <span class="source">来源：量子位 / WAIC官方</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7657332723987595802/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- News 11 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="tag tag-regulation">监管</span>
+      <h2><a href="http://m.toutiao.com/group/7657723974110102051/" target="_blank">欧盟AI法案高风险系统条款8月全面适用，全球AI监管格局加速成型</a></h2>
+    </div>
+    <p class="summary">欧盟《人工智能法案》(EU AI Act)高风险系统条款将于2026年8月全面适用，与此同时OpenAI和Anthropic的前沿模型发布已深度嵌入政府安全审查流程。2026年中美欧三大监管体系几乎同时出牌，底层逻辑一致：监管不反对AI，反对的是没有人对AI的产出负责。合规能力正成为AI竞争的新维度。</p>
+    <div class="source-row">
+      <span class="source">来源：今日头条 / 欧盟委员会</span>
+      <a class="read-more" href="http://m.toutiao.com/group/7657723974110102051/" target="_blank">阅读原文 &#8599;</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a class="back-home" href="../index.html">&#8592; 返回首页</a>
+    <p class="copyright">AI 日报 &copy; 2026 · 每日精选全球 AI 领域重要资讯</p>
+  </div>
+
+</div>
+</body>
+</html>
